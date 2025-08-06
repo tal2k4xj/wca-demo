@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grammy Voting Platform</title>
+</head>
+<body>
+    <h1>Grammy Voting Platform</h1>
+    {% for category in categories %}
+    {% set outer_loop = loop %} 
+    <form action="/vote" method="POST">
+        <h2>{{ category["name"] }}</h2>
+        {% for choice in category["choices"] %}
+        <input type="radio" name="choice" value="{{ choice['id'] }}"> {{ choice['name'] }}<br>
+        {% endfor %}
+        <input type="submit" value="Submit Vote">
+    </form>
+    {% endfor %}
+</body>
+</html>

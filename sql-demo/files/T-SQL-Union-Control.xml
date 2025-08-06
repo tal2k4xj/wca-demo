@@ -1,0 +1,390 @@
+<ShowPlanXML xmlns="http://schemas.microsoft.com/sqlserver/2004/07/showplan" Version="1.564" Build="16.0.4185.3">
+  <BatchSequence>
+    <Batch>
+      <Statements>
+        <StmtSimple StatementText="SELECT city.id as id,city.name + &apos;, &apos; + country_division.name + &apos;, &apos;  + country.name AS display_name,&#xa;&#x9;ranking,&#xa;&#x9;population,&#xa;&#x9;density&#xa;FROM city&#xa;&#x9;INNER JOIN country ON city.iso3 = country.iso3&#xa;&#x9;INNER JOIN country_division ON city.division_id = country_division.id&#xa;WHERE show_division = 1&#xa;&#x9;AND city.division_id IS NOT NULL&#xa;ORDER BY display_name ASC, ranking ASC, population DESC, density DESC" StatementId="1" StatementCompId="1" StatementType="SELECT" RetrievedFromCache="false" StatementSubTreeCost="29.8958" StatementEstRows="880214" SecurityPolicyApplied="false" StatementOptmLevel="FULL" QueryHash="0x015C972082679276" QueryPlanHash="0xE362F718BBC64B68" CardinalityEstimationModelVersion="160" BatchModeOnRowStoreUsed="true">
+          <StatementSetOptions QUOTED_IDENTIFIER="true" ARITHABORT="false" CONCAT_NULL_YIELDS_NULL="true" ANSI_NULLS="true" ANSI_PADDING="true" ANSI_WARNINGS="true" NUMERIC_ROUNDABORT="false"></StatementSetOptions>
+          <QueryPlan CachedPlanSize="128" CompileTime="15" CompileCPU="15" CompileMemory="1584">
+            <ThreadStat Branches="1"></ThreadStat>
+            <MissingIndexes>
+              <MissingIndexGroup Impact="47.0495">
+                <MissingIndex Database="[location]" Schema="[dbo]" Table="[city]">
+                  <ColumnGroup Usage="INEQUALITY">
+                    <Column Name="[division_id]" ColumnId="12"></Column>
+                  </ColumnGroup>
+                  <ColumnGroup Usage="INCLUDE">
+                    <Column Name="[name]" ColumnId="2"></Column>
+                    <Column Name="[iso3]" ColumnId="7"></Column>
+                    <Column Name="[population]" ColumnId="10"></Column>
+                    <Column Name="[ranking]" ColumnId="11"></Column>
+                    <Column Name="[density]" ColumnId="13"></Column>
+                  </ColumnGroup>
+                </MissingIndex>
+              </MissingIndexGroup>
+              <MissingIndexGroup Impact="76.2818">
+                <MissingIndex Database="[location]" Schema="[dbo]" Table="[city]">
+                  <ColumnGroup Usage="EQUALITY">
+                    <Column Name="[iso3]" ColumnId="7"></Column>
+                  </ColumnGroup>
+                  <ColumnGroup Usage="INEQUALITY">
+                    <Column Name="[division_id]" ColumnId="12"></Column>
+                  </ColumnGroup>
+                  <ColumnGroup Usage="INCLUDE">
+                    <Column Name="[name]" ColumnId="2"></Column>
+                    <Column Name="[population]" ColumnId="10"></Column>
+                    <Column Name="[ranking]" ColumnId="11"></Column>
+                    <Column Name="[density]" ColumnId="13"></Column>
+                  </ColumnGroup>
+                </MissingIndex>
+              </MissingIndexGroup>
+            </MissingIndexes>
+            <MemoryGrantInfo SerialRequiredMemory="2200" SerialDesiredMemory="417472" GrantedMemory="0" MaxUsedMemory="0"></MemoryGrantInfo>
+            <OptimizerHardwareDependentProperties EstimatedAvailableMemoryGrant="329760" EstimatedPagesCached="329760" EstimatedAvailableDegreeOfParallelism="8" MaxCompileMemory="34474960"></OptimizerHardwareDependentProperties>
+            <OptimizerStatsUsage>
+              <StatisticsInfo LastUpdate="2025-04-09T21:43:22.25" ModificationCount="0" SamplingPercent="100" Statistics="[PK__country___3213E83F85D46439]" Table="[country_division]" Schema="[dbo]" Database="[location]"></StatisticsInfo>
+              <StatisticsInfo LastUpdate="2025-04-09T22:05:21.29" ModificationCount="0" SamplingPercent="5.96546" Statistics="[_WA_Sys_0000000C_3C69FB99]" Table="[city]" Schema="[dbo]" Database="[location]"></StatisticsInfo>
+              <StatisticsInfo LastUpdate="2025-04-09T22:05:21.41" ModificationCount="0" SamplingPercent="100" Statistics="[UQ__country__99F94A8531B5E781]" Table="[country]" Schema="[dbo]" Database="[location]"></StatisticsInfo>
+              <StatisticsInfo LastUpdate="2025-04-09T22:05:21.21" ModificationCount="0" SamplingPercent="6.00127" Statistics="[PK__city__3213E83FBA587435]" Table="[city]" Schema="[dbo]" Database="[location]"></StatisticsInfo>
+              <StatisticsInfo LastUpdate="2025-04-09T22:05:21.41" ModificationCount="0" SamplingPercent="100" Statistics="[PK__country__3213E83F0817B195]" Table="[country]" Schema="[dbo]" Database="[location]"></StatisticsInfo>
+              <StatisticsInfo LastUpdate="2025-04-09T22:05:21.36" ModificationCount="0" SamplingPercent="5.96546" Statistics="[ix_city_iso3]" Table="[city]" Schema="[dbo]" Database="[location]"></StatisticsInfo>
+              <StatisticsInfo LastUpdate="2025-04-09T22:20:20.72" ModificationCount="0" SamplingPercent="100" Statistics="[_WA_Sys_00000005_38996AB5]" Table="[country]" Schema="[dbo]" Database="[location]"></StatisticsInfo>
+            </OptimizerStatsUsage>
+            <RelOp NodeId="0" PhysicalOp="Parallelism" LogicalOp="Gather Streams" EstimateRows="880214" EstimateIO="0" EstimateCPU="5.73707" AvgRowSize="273" EstimatedTotalSubtreeCost="29.8958" Parallel="1" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Row">
+              <OutputList>
+                <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="id"></ColumnReference>
+                <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="population"></ColumnReference>
+                <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="ranking"></ColumnReference>
+                <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="density"></ColumnReference>
+                <ColumnReference Column="Expr1006"></ColumnReference>
+              </OutputList>
+              <Parallelism>
+                <OrderBy>
+                  <OrderByColumn Ascending="1">
+                    <ColumnReference Column="Expr1006"></ColumnReference>
+                  </OrderByColumn>
+                  <OrderByColumn Ascending="1">
+                    <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="ranking"></ColumnReference>
+                  </OrderByColumn>
+                  <OrderByColumn Ascending="0">
+                    <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="population"></ColumnReference>
+                  </OrderByColumn>
+                  <OrderByColumn Ascending="0">
+                    <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="density"></ColumnReference>
+                  </OrderByColumn>
+                </OrderBy>
+                <RelOp NodeId="1" PhysicalOp="Sort" LogicalOp="Sort" EstimateRows="880214" EstimateIO="0.000469219" EstimateCPU="0.997306" AvgRowSize="273" EstimatedTotalSubtreeCost="24.1581" Parallel="1" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Batch">
+                  <OutputList>
+                    <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="id"></ColumnReference>
+                    <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="population"></ColumnReference>
+                    <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="ranking"></ColumnReference>
+                    <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="density"></ColumnReference>
+                    <ColumnReference Column="Expr1006"></ColumnReference>
+                  </OutputList>
+                  <MemoryFractions Input="0.97434" Output="0.97434"></MemoryFractions>
+                  <Sort Distinct="0">
+                    <OrderBy>
+                      <OrderByColumn Ascending="1">
+                        <ColumnReference Column="Expr1006"></ColumnReference>
+                      </OrderByColumn>
+                      <OrderByColumn Ascending="1">
+                        <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="ranking"></ColumnReference>
+                      </OrderByColumn>
+                      <OrderByColumn Ascending="0">
+                        <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="population"></ColumnReference>
+                      </OrderByColumn>
+                      <OrderByColumn Ascending="0">
+                        <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="density"></ColumnReference>
+                      </OrderByColumn>
+                    </OrderBy>
+                    <RelOp NodeId="2" PhysicalOp="Compute Scalar" LogicalOp="Compute Scalar" EstimateRows="880214" EstimateIO="0" EstimateCPU="0.00110027" AvgRowSize="273" EstimatedTotalSubtreeCost="23.1604" Parallel="1" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Batch">
+                      <OutputList>
+                        <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="id"></ColumnReference>
+                        <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="population"></ColumnReference>
+                        <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="ranking"></ColumnReference>
+                        <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="density"></ColumnReference>
+                        <ColumnReference Column="Expr1006"></ColumnReference>
+                      </OutputList>
+                      <ComputeScalar>
+                        <DefinedValues>
+                          <DefinedValue>
+                            <ColumnReference Column="Expr1006"></ColumnReference>
+                            <ScalarOperator ScalarString="[Expr1007]+[location].[dbo].[country_division].[name]+N&apos;, &apos;+[location].[dbo].[country].[name]">
+                              <Arithmetic Operation="ADD">
+                                <ScalarOperator>
+                                  <Arithmetic Operation="ADD">
+                                    <ScalarOperator>
+                                      <Arithmetic Operation="ADD">
+                                        <ScalarOperator>
+                                          <Identifier>
+                                            <ColumnReference Column="Expr1007"></ColumnReference>
+                                          </Identifier>
+                                        </ScalarOperator>
+                                        <ScalarOperator>
+                                          <Identifier>
+                                            <ColumnReference Database="[location]" Schema="[dbo]" Table="[country_division]" Column="name"></ColumnReference>
+                                          </Identifier>
+                                        </ScalarOperator>
+                                      </Arithmetic>
+                                    </ScalarOperator>
+                                    <ScalarOperator>
+                                      <Const ConstValue="N&apos;, &apos;"></Const>
+                                    </ScalarOperator>
+                                  </Arithmetic>
+                                </ScalarOperator>
+                                <ScalarOperator>
+                                  <Identifier>
+                                    <ColumnReference Database="[location]" Schema="[dbo]" Table="[country]" Column="name"></ColumnReference>
+                                  </Identifier>
+                                </ScalarOperator>
+                              </Arithmetic>
+                            </ScalarOperator>
+                          </DefinedValue>
+                        </DefinedValues>
+                        <RelOp NodeId="3" PhysicalOp="Hash Match" LogicalOp="Inner Join" EstimateRows="880214" EstimateIO="0" EstimateCPU="0.121964" AvgRowSize="275" EstimatedTotalSubtreeCost="23.1593" Parallel="1" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Batch">
+                          <OutputList>
+                            <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="id"></ColumnReference>
+                            <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="population"></ColumnReference>
+                            <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="ranking"></ColumnReference>
+                            <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="density"></ColumnReference>
+                            <ColumnReference Database="[location]" Schema="[dbo]" Table="[country]" Column="name"></ColumnReference>
+                            <ColumnReference Database="[location]" Schema="[dbo]" Table="[country_division]" Column="name"></ColumnReference>
+                            <ColumnReference Column="Expr1007"></ColumnReference>
+                          </OutputList>
+                          <MemoryFractions Input="0.0256603" Output="0.0256603"></MemoryFractions>
+                          <Hash>
+                            <DefinedValues></DefinedValues>
+                            <HashKeysBuild>
+                              <ColumnReference Database="[location]" Schema="[dbo]" Table="[country_division]" Column="id"></ColumnReference>
+                            </HashKeysBuild>
+                            <HashKeysProbe>
+                              <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="division_id"></ColumnReference>
+                            </HashKeysProbe>
+                            <ProbeResidual>
+                              <ScalarOperator ScalarString="[location].[dbo].[country_division].[id]=[location].[dbo].[city].[division_id]">
+                                <Compare CompareOp="EQ">
+                                  <ScalarOperator>
+                                    <Identifier>
+                                      <ColumnReference Database="[location]" Schema="[dbo]" Table="[country_division]" Column="id"></ColumnReference>
+                                    </Identifier>
+                                  </ScalarOperator>
+                                  <ScalarOperator>
+                                    <Identifier>
+                                      <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="division_id"></ColumnReference>
+                                    </Identifier>
+                                  </ScalarOperator>
+                                </Compare>
+                              </ScalarOperator>
+                            </ProbeResidual>
+                            <RelOp NodeId="4" PhysicalOp="Clustered Index Scan" LogicalOp="Clustered Index Scan" EstimateRows="4271" EstimatedRowsRead="4271" EstimateIO="0.0223843" EstimateCPU="0.000606888" AvgRowSize="93" EstimatedTotalSubtreeCost="0.0229911" TableCardinality="4271" Parallel="1" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Batch">
+                              <OutputList>
+                                <ColumnReference Database="[location]" Schema="[dbo]" Table="[country_division]" Column="id"></ColumnReference>
+                                <ColumnReference Database="[location]" Schema="[dbo]" Table="[country_division]" Column="name"></ColumnReference>
+                              </OutputList>
+                              <IndexScan Ordered="0" ForcedIndex="0" ForceSeek="0" ForceScan="0" NoExpandHint="0" Storage="RowStore">
+                                <DefinedValues>
+                                  <DefinedValue>
+                                    <ColumnReference Database="[location]" Schema="[dbo]" Table="[country_division]" Column="id"></ColumnReference>
+                                  </DefinedValue>
+                                  <DefinedValue>
+                                    <ColumnReference Database="[location]" Schema="[dbo]" Table="[country_division]" Column="name"></ColumnReference>
+                                  </DefinedValue>
+                                </DefinedValues>
+                                <Object Database="[location]" Schema="[dbo]" Table="[country_division]" Index="[PK__country___3213E83F85D46439]" IndexKind="Clustered" Storage="RowStore"></Object>
+                              </IndexScan>
+                            </RelOp>
+                            <RelOp NodeId="5" PhysicalOp="Hash Match" LogicalOp="Inner Join" EstimateRows="880214" EstimateIO="0" EstimateCPU="0.156246" AvgRowSize="215" EstimatedTotalSubtreeCost="23.0143" Parallel="1" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Batch">
+                              <OutputList>
+                                <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="id"></ColumnReference>
+                                <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="population"></ColumnReference>
+                                <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="ranking"></ColumnReference>
+                                <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="division_id"></ColumnReference>
+                                <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="density"></ColumnReference>
+                                <ColumnReference Database="[location]" Schema="[dbo]" Table="[country]" Column="name"></ColumnReference>
+                                <ColumnReference Column="Expr1007"></ColumnReference>
+                              </OutputList>
+                              <MemoryFractions Input="0.000751315" Output="0.000751315"></MemoryFractions>
+                              <Hash BitmapCreator="1">
+                                <DefinedValues>
+                                  <DefinedValue>
+                                    <ColumnReference Column="Opt_Bitmap1015"></ColumnReference>
+                                  </DefinedValue>
+                                </DefinedValues>
+                                <HashKeysBuild>
+                                  <ColumnReference Database="[location]" Schema="[dbo]" Table="[country]" Column="iso3"></ColumnReference>
+                                </HashKeysBuild>
+                                <HashKeysProbe>
+                                  <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="iso3"></ColumnReference>
+                                </HashKeysProbe>
+                                <ProbeResidual>
+                                  <ScalarOperator ScalarString="[location].[dbo].[country].[iso3]=[location].[dbo].[city].[iso3]">
+                                    <Compare CompareOp="EQ">
+                                      <ScalarOperator>
+                                        <Identifier>
+                                          <ColumnReference Database="[location]" Schema="[dbo]" Table="[country]" Column="iso3"></ColumnReference>
+                                        </Identifier>
+                                      </ScalarOperator>
+                                      <ScalarOperator>
+                                        <Identifier>
+                                          <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="iso3"></ColumnReference>
+                                        </Identifier>
+                                      </ScalarOperator>
+                                    </Compare>
+                                  </ScalarOperator>
+                                </ProbeResidual>
+                                <RelOp NodeId="6" PhysicalOp="Clustered Index Scan" LogicalOp="Clustered Index Scan" EstimateRows="147" EstimatedRowsRead="254" EstimateIO="0.00460648" EstimateCPU="5.455e-05" AvgRowSize="80" EstimatedTotalSubtreeCost="0.00466103" TableCardinality="254" Parallel="1" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Batch">
+                                  <OutputList>
+                                    <ColumnReference Database="[location]" Schema="[dbo]" Table="[country]" Column="iso3"></ColumnReference>
+                                    <ColumnReference Database="[location]" Schema="[dbo]" Table="[country]" Column="name"></ColumnReference>
+                                  </OutputList>
+                                  <IndexScan Ordered="0" ForcedIndex="0" ForceSeek="0" ForceScan="0" NoExpandHint="0" Storage="RowStore">
+                                    <DefinedValues>
+                                      <DefinedValue>
+                                        <ColumnReference Database="[location]" Schema="[dbo]" Table="[country]" Column="iso3"></ColumnReference>
+                                      </DefinedValue>
+                                      <DefinedValue>
+                                        <ColumnReference Database="[location]" Schema="[dbo]" Table="[country]" Column="name"></ColumnReference>
+                                      </DefinedValue>
+                                    </DefinedValues>
+                                    <Object Database="[location]" Schema="[dbo]" Table="[country]" Index="[PK__country__3213E83F0817B195]" IndexKind="Clustered" Storage="RowStore"></Object>
+                                    <Predicate>
+                                      <ScalarOperator ScalarString="[location].[dbo].[country].[show_division]=(1)">
+                                        <Compare CompareOp="EQ">
+                                          <ScalarOperator>
+                                            <Identifier>
+                                              <ColumnReference Database="[location]" Schema="[dbo]" Table="[country]" Column="show_division"></ColumnReference>
+                                            </Identifier>
+                                          </ScalarOperator>
+                                          <ScalarOperator>
+                                            <Const ConstValue="(1)"></Const>
+                                          </ScalarOperator>
+                                        </Compare>
+                                      </ScalarOperator>
+                                    </Predicate>
+                                  </IndexScan>
+                                </RelOp>
+                                <RelOp NodeId="7" PhysicalOp="Filter" LogicalOp="Filter" EstimateRows="1.52091e+06" EstimateIO="0" EstimateCPU="0.0916446" AvgRowSize="161" EstimatedTotalSubtreeCost="22.8534" Parallel="1" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Batch">
+                                  <OutputList>
+                                    <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="id"></ColumnReference>
+                                    <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="iso3"></ColumnReference>
+                                    <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="population"></ColumnReference>
+                                    <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="ranking"></ColumnReference>
+                                    <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="division_id"></ColumnReference>
+                                    <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="density"></ColumnReference>
+                                    <ColumnReference Column="Expr1007"></ColumnReference>
+                                  </OutputList>
+                                  <Filter StartupExpression="0">
+                                    <RelOp NodeId="8" PhysicalOp="Compute Scalar" LogicalOp="Compute Scalar" EstimateRows="1.52091e+06" EstimateIO="0" EstimateCPU="0.00190926" AvgRowSize="161" EstimatedTotalSubtreeCost="22.7617" Parallel="1" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Batch">
+                                      <OutputList>
+                                        <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="id"></ColumnReference>
+                                        <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="iso3"></ColumnReference>
+                                        <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="population"></ColumnReference>
+                                        <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="ranking"></ColumnReference>
+                                        <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="division_id"></ColumnReference>
+                                        <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="density"></ColumnReference>
+                                        <ColumnReference Column="Expr1007"></ColumnReference>
+                                      </OutputList>
+                                      <ComputeScalar>
+                                        <DefinedValues>
+                                          <DefinedValue>
+                                            <ColumnReference Column="Expr1007"></ColumnReference>
+                                            <ScalarOperator ScalarString="[location].[dbo].[city].[name]+N&apos;, &apos;">
+                                              <Arithmetic Operation="ADD">
+                                                <ScalarOperator>
+                                                  <Identifier>
+                                                    <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="name"></ColumnReference>
+                                                  </Identifier>
+                                                </ScalarOperator>
+                                                <ScalarOperator>
+                                                  <Const ConstValue="N&apos;, &apos;"></Const>
+                                                </ScalarOperator>
+                                              </Arithmetic>
+                                            </ScalarOperator>
+                                          </DefinedValue>
+                                        </DefinedValues>
+                                        <RelOp NodeId="9" PhysicalOp="Clustered Index Scan" LogicalOp="Clustered Index Scan" EstimateRows="1.52091e+06" EstimatedRowsRead="1.52741e+06" EstimateIO="22.5498" EstimateCPU="0.210039" AvgRowSize="159" EstimatedTotalSubtreeCost="22.7598" TableCardinality="1.52741e+06" Parallel="1" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Batch">
+                                          <OutputList>
+                                            <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="id"></ColumnReference>
+                                            <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="name"></ColumnReference>
+                                            <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="iso3"></ColumnReference>
+                                            <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="population"></ColumnReference>
+                                            <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="ranking"></ColumnReference>
+                                            <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="division_id"></ColumnReference>
+                                            <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="density"></ColumnReference>
+                                          </OutputList>
+                                          <IndexScan Ordered="0" ForcedIndex="0" ForceSeek="0" ForceScan="0" NoExpandHint="0" Storage="RowStore">
+                                            <DefinedValues>
+                                              <DefinedValue>
+                                                <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="id"></ColumnReference>
+                                              </DefinedValue>
+                                              <DefinedValue>
+                                                <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="name"></ColumnReference>
+                                              </DefinedValue>
+                                              <DefinedValue>
+                                                <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="iso3"></ColumnReference>
+                                              </DefinedValue>
+                                              <DefinedValue>
+                                                <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="population"></ColumnReference>
+                                              </DefinedValue>
+                                              <DefinedValue>
+                                                <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="ranking"></ColumnReference>
+                                              </DefinedValue>
+                                              <DefinedValue>
+                                                <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="division_id"></ColumnReference>
+                                              </DefinedValue>
+                                              <DefinedValue>
+                                                <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="density"></ColumnReference>
+                                              </DefinedValue>
+                                            </DefinedValues>
+                                            <Object Database="[location]" Schema="[dbo]" Table="[city]" Index="[PK__city__3213E83FBA587435]" IndexKind="Clustered" Storage="RowStore"></Object>
+                                            <Predicate>
+                                              <ScalarOperator ScalarString="[location].[dbo].[city].[division_id] IS NOT NULL">
+                                                <Compare CompareOp="IS NOT">
+                                                  <ScalarOperator>
+                                                    <Identifier>
+                                                      <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="division_id"></ColumnReference>
+                                                    </Identifier>
+                                                  </ScalarOperator>
+                                                  <ScalarOperator>
+                                                    <Const ConstValue="NULL"></Const>
+                                                  </ScalarOperator>
+                                                </Compare>
+                                              </ScalarOperator>
+                                            </Predicate>
+                                          </IndexScan>
+                                        </RelOp>
+                                      </ComputeScalar>
+                                    </RelOp>
+                                    <Predicate>
+                                      <ScalarOperator ScalarString="PROBE([Opt_Bitmap1015],[location].[dbo].[city].[iso3])">
+                                        <Intrinsic FunctionName="PROBE">
+                                          <ScalarOperator>
+                                            <Identifier>
+                                              <ColumnReference Column="Opt_Bitmap1015"></ColumnReference>
+                                            </Identifier>
+                                          </ScalarOperator>
+                                          <ScalarOperator>
+                                            <Identifier>
+                                              <ColumnReference Database="[location]" Schema="[dbo]" Table="[city]" Column="iso3"></ColumnReference>
+                                            </Identifier>
+                                          </ScalarOperator>
+                                        </Intrinsic>
+                                      </ScalarOperator>
+                                    </Predicate>
+                                  </Filter>
+                                </RelOp>
+                              </Hash>
+                            </RelOp>
+                          </Hash>
+                        </RelOp>
+                      </ComputeScalar>
+                    </RelOp>
+                  </Sort>
+                </RelOp>
+              </Parallelism>
+            </RelOp>
+          </QueryPlan>
+        </StmtSimple>
+      </Statements>
+    </Batch>
+  </BatchSequence>
+</ShowPlanXML>

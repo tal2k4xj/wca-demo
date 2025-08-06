@@ -1,0 +1,31 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer List</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Customer List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="customer : ${customers}">
+                <td th:text="${customer.name}">John Doe</td>
+                <td>
+                    <a th:href="@{/edit(id=${customer.id})}">Edit</a>
+                    <a th:href="@{/delete(id=${customer.id})}">Delete</a>
+                </td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(customers)}">
+                <td colspan="2">No customers found.</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

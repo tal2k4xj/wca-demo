@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<struts-config><form-beans><form-bean name="customerForm" type="com.example.app.form.CustomerForm" /></form-beans><action-mappings><action path="/customer" type="com.example.app.action.CustomerAction" name="customerForm"><forward name="success" path="/customer.do?method=list" /><forward name="list" path="/pages/customer/list.jsp" /></action></action-mappings></struts-config>

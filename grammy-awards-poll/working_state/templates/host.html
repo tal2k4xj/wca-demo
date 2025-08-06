@@ -1,0 +1,19 @@
+{% for category in categories %}
+<section>
+    <h2>{{ category["name"] }}</h2>
+    <table>
+        <tr>
+            <th>Choice</th>
+            <th>Votes</th>
+        </tr>
+        {% for choice in category["choices"] %}
+        <tr>
+            <td>{{ choice["name"] }}</td>
+            <td>
+                <progress value="{{ choice['percent'] }}" max="100"></progress>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</section>
+{% endfor %}
