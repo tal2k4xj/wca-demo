@@ -12,7 +12,15 @@ def hello():
     return "Hello, Flask!"
 
 @app.route("/health")
+# Assisted by watsonx Code Assistant
+
 def health():
+    """
+    Check the health status of the system.
+
+    Returns:
+        str: A string indicating the health status, which is "OK" if the system is functioning properly.
+    """
     return "OK"
 
 
